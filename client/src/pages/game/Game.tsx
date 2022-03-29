@@ -62,6 +62,7 @@ function Game() {
   return (
     <div className="gameWrapper">
       <div className="titleWrapper">
+        <button>new</button>
         <h3>modular wordle</h3>
       </div>
       <div className="gridDiv">
