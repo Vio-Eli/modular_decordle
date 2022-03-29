@@ -1,13 +1,13 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Grid from './components/Grid';
+import Game from './pages/Game';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Grid />
+      <Game />
       </header>
     </div>
   );
