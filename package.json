@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Vio-Eli/modular_octowordle/issues"
   },
-  "homepage": "https://github.com/Vio-Eli/modular_octowordle#readme"
+  "homepage": "https://github.com/Vio-Eli/modular_octowordle#readme",
+  "dependencies": {
+    "typescript": "^4.6.3"
+  }
 }
