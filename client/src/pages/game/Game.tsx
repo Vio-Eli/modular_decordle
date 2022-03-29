@@ -5,9 +5,16 @@ import dict from '../../utils/dict.json';
 import pick from '../../utils/pick';
 import './Game.scss';
 
+enum GameState {
+  NotPlaying,
+  Playing,
+  Won,
+  Lost
+}
+
 function getWords(wordLength: number, numWords: number): string[] {
 
-  const eligible = dict.filter((word) => word.length == wordLength);
+  const eligible = dict.filter((word) => word.length === wordLength);
   let wordArr: string[] = [];
 
   for (let i=0; i<numWords; i++) {
@@ -28,7 +35,13 @@ function Game() {
 
   //create log on key press
   const onKey = (key: string) => {
-    console.log(`${key} dpressed`)
+
+    if (/^[a-z]$/i.test(key)) {
+      console.log(`${key} dp`)
+
+    } else if (key === "Enter") {
+      //if 
+    }
   };
 
   useEffect(() => {
@@ -49,6 +62,7 @@ function Game() {
   return (
     <div className="gameWrapper">
       <div className="titleWrapper">
+        <button>new</button>
         <h3>modular wordle</h3>
       </div>
       <div className="gridDiv">
