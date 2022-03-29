@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Grid from '../../components/grid/Grid';
 import dict from '../../utils/dict.json';
 import pick from '../../utils/pick';
@@ -12,12 +11,17 @@ enum GameState {
   Lost
 }
 
+const newGame = () => {
+  window.location.reload();
+}
+
 function getWords(wordLength: number, numWords: number): string[] {
 
   const eligible = dict.filter((word) => word.length === wordLength);
   let wordArr: string[] = [];
 
   for (let i=0; i<numWords; i++) {
+    // TODO: Make sure word can't be duplicated
     let word: string = pick(eligible)
     wordArr.push(word);
   }
@@ -29,19 +33,36 @@ function getWords(wordLength: number, numWords: number): string[] {
 
 function Game() {
 
-  let guess = [""];
+  const tableRef = useRef<HTMLTableElement>(null);
 
-  getWords(5, 2);
+  const [guessArr, setGuessArr] = useState<string[]>([]);
+  const [currentGuess, setCurrentGuess] = useState<string>("");
+
+  const wordLength: number = 5;
+
+
 
   //create log on key press
   const onKey = (key: string) => {
 
     if (/^[a-z]$/i.test(key)) {
-      console.log(`${key} dp`)
+      setCurrentGuess((currentGuess) => 
+        (currentGuess + key.toLocaleLowerCase()).slice(0, wordLength)
+      );
+      tableRef.current?.focus();
+
+    } else if (key === "Backspace") {
+      setCurrentGuess((currentGuess) => currentGuess.slice(0, -1));
 
     } else if (key === "Enter") {
-      //if 
+      if (currentGuess.length !== wordLength) {
+        console.log("Too Short")
+      }
+      if (!dict.includes(currentGuess)) {
+        console.log("Invalid Word")
+      }
     }
+    console.log(currentGuess);
   };
 
   useEffect(() => {
@@ -57,16 +78,16 @@ function Game() {
     return () => {
       document.removeEventListener("keydown", onKeyDown);
     };
-  });
+  }, [currentGuess]);
 
   return (
     <div className="gameWrapper">
       <div className="titleWrapper">
-        <button>new</button>
+        <button onClick={newGame}>new</button>
         <h3>modular wordle</h3>
       </div>
       <div className="gridDiv">
-        <Grid />
+        <Grid tableRef={tableRef} currentGuess={currentGuess} guessArr={guessArr} maxGuesses={6} wordLength={wordLength}/>
       </div>
     </div>
   )

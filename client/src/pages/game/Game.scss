@@ -1,8 +1,32 @@
+$background-dark: #181a1b;
+
 .gameWrapper {
 
 
     > .titleWrapper {
     color: red;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+
+    > h3 {
+        font-size: 25px;
+        margin: 0px;
+    }
+
+    > button {
+        background-color: $background-dark;
+        font-size: 15px;
+        color: white;
+        border: 1px white solid;
+        height: 25px;
+        margin-right: 10px;
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
     > .gridDiv {
