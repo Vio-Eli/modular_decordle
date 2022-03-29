@@ -17,7 +17,7 @@ export default function Grid() {
     .fill(undefined)
     .map((_, i) => {
       return (
-        <tr>{letterDivs}</tr>
+        <tr key={i}>{letterDivs}</tr>
       );
     })
 
