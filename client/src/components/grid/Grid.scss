@@ -1,0 +1,14 @@
+.gridWrapper {
+    > table {
+        > tbody {
+            > tr {
+                > td {
+                    background-color: rgb(116, 116, 116);
+                    width: 40px;
+                    height: 40px;
+                    border: 3px rgb(63, 63, 63) solid;
+                }
+            }
+        }
+    }
+}
