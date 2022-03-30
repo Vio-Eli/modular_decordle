@@ -11,6 +11,7 @@ enum GameState {
   Lost
 }
 
+
 const newGame = () => {
   window.location.reload();
 }
@@ -21,9 +22,11 @@ function getWords(wordLength: number, numWords: number): string[] {
   let wordArr: string[] = [];
 
   for (let i = 0; i < numWords; i++) {
-    // TODO: Make sure word can't be duplicated
     let word: string = pick(eligible);
-    wordArr.push(word);
+    // Ensures no duplication of words (extra precaution)
+    if (!wordArr.includes(word)) {
+      wordArr.push(word);
+    }
   }
 
   console.log(wordArr);
@@ -33,11 +36,13 @@ function getWords(wordLength: number, numWords: number): string[] {
 function Game() {
 
   const tableRef = useRef<HTMLTableElement>(null);
-
+  const [warning, setWarning] = useState('');
   const [guessArr, setGuessArr] = useState<string[]>([]);
   const [currentGuess, setCurrentGuess] = useState<string>("");
 
   const wordLength: number = 5;
+
+  let answer: string = "muddy"
 
   useEffect(() => {
 
@@ -54,18 +59,26 @@ function Game() {
         setCurrentGuess((currentGuess) => currentGuess.slice(0, -1));
 
       } else if (key === "Enter") {
+        if (currentGuess.length === 0) {
+          setWarning("Please enter a word");
+          return;
+        }
         if (currentGuess.length !== wordLength) {
-          console.log("Too Short")
+          setWarning("Too Short!");
           return;
         }
         if (!dict.includes(currentGuess)) {
-          console.log("Invalid Word")
+          setWarning("Invalid Word");
           return;
         }
+        if (guessArr.includes(currentGuess)) {
+          setWarning("Can't use the same word twice!");
+          return;
+        }
+        
         setGuessArr((guessArr) => guessArr.concat([currentGuess]));
         setCurrentGuess((currentGuess) => "");
       }
-      console.log(currentGuess);
     };
 
     const onKeyDown = (e: KeyboardEvent) => {
@@ -80,16 +93,28 @@ function Game() {
     return () => {
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [currentGuess]);
+  }, [currentGuess, guessArr]);
+
 
   return (
     <div className="gameWrapper">
       <div className="titleWrapper">
         <button onClick={newGame}>new</button>
-        <h3>modular wordle</h3>
+        <h3>
+          <span style={{ color: "#e07680" }}> modular </span>
+          <span style={{ color: "#64da7c" }}> wordle </span>
+        </h3>
       </div>
       <div className="gridDiv">
-        <Grid tableRef={tableRef} currentGuess={currentGuess} guessArr={guessArr} maxGuesses={6} wordLength={wordLength} />
+        <Grid answer={answer}
+          tableRef={tableRef}
+          currentGuess={currentGuess}
+          guessArr={guessArr}
+          maxGuesses={6}
+          wordLength={wordLength} />
+      </div>
+      <div className="warning">
+        <span>{warning}</span>
       </div>
     </div>
   )
