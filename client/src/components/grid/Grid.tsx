@@ -55,15 +55,14 @@ export default function Grid(props: GridProps) {
     if (!oldGuess.includes(word)) {
       checkedArr.push(check(word, props.answer));
       oldGuess.push(word);
-
-      if (word === props.answer) {
-        State = GridState.Won;
-        props.gridChecker(0, State);
-      }
+    }
+    if (word === props.answer) {
+      State = GridState.Won;
+      props.gridChecker(0, State);
     }
   });
 
-  if (props.guessArr.length === props.maxGuesses) {
+  if (props.guessArr.length === props.maxGuesses && State !== GridState.Won) {
     State = GridState.Lost;
     props.gridChecker(0, State);
   }
