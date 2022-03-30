@@ -43,9 +43,9 @@ function letterDivs(wordRow: string, wordLength: number, gridState: GridState) {
 }
 
 // Array for previously checked words
-let oldGuess: string[] = []//["hinge"];
-let checkedArr: checked[][] = [];//[[{letter: 'h', color: 'green'}, {letter: 'i', color: 'goldenrod'}, {letter: 'n', color: '#b59f3b'}, {letter: 'g', color: 'grey'}, {letter: 'e', color: 'gray'}]];
-let State: GridState = GridState.Playing
+let oldGuess: string[] = [];
+let checkedArr: checked[][] = [];
+let State: GridState = GridState.Playing;
 
 export default function Grid(props: GridProps) {
 
