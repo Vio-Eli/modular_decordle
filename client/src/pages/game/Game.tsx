@@ -1,11 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
-import Grid from '../../components/grid/Grid';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import Grid, { GridState } from '../../components/grid/Grid';
 import dict from '../../utils/dict.json';
 import pick from '../../utils/pick';
 import './Game.scss';
 
 enum GameState {
-  NotPlaying,
   Playing,
   Won,
   Lost
@@ -32,15 +31,29 @@ function getWords(wordLength: number, numWords: number): string[] {
   return wordArr;
 }
 
+let stateArr: number[] = [0];
+
 function Game() {
 
   const wordLength: number = 5;
+  const numGrids: number = 1;
+  const numGuesses: number = numGrids + 5;
   const tableRef = useRef<HTMLTableElement>(null);
 
   const [warning, setWarning] = useState('');
+  const [warningColor, setWarningColor] = useState<string>('red');
   const [guessArr, setGuessArr] = useState<string[]>([]);
   const [currentGuess, setCurrentGuess] = useState<string>("");
   const [answer, setAnswer] = useState<string[]>(getWords(wordLength, 1));
+
+  const [gameState, setGameState] = useState<GameState>(GameState.Playing);
+
+  // Callback for each grid to set if won or lost
+  let GridChecker = useCallback(
+    (gridNum: number, gridState: GridState) => {
+      stateArr[gridNum] = gridState;
+    }, [],
+  );
 
   useEffect(() => {
 
@@ -59,24 +72,39 @@ function Game() {
       } else if (key === "Enter") {
         if (currentGuess.length === 0) {
           setWarning("Please enter a word");
+          setWarningColor("yellow");
           return;
         }
         if (currentGuess.length !== wordLength) {
           setWarning("Too Short!");
+          setWarningColor("yellow");
           return;
         }
         if (!dict.includes(currentGuess)) {
           setWarning("Invalid Word");
+          setWarningColor("yellow");
           return;
         }
         if (guessArr.includes(currentGuess)) {
           setWarning("Can't use the same word twice!");
+          setWarningColor("yellow");
           return;
         }
-        
+
         setGuessArr((guessArr) => guessArr.concat([currentGuess]));
         setCurrentGuess((currentGuess) => "");
       }
+    };
+
+    // Check Callback GridState --> See if player won or not
+    if (stateArr.every(x => x === 1)) {
+      setGameState(gameState => GameState.Won);
+      setWarning("You've Won!");
+      setWarningColor("green");
+    } else if (stateArr.some(x => x === 2)) {
+      setGameState(gameState => GameState.Lost);
+      setWarning(`You've lost. The word was ${answer[0]}`);
+      setWarningColor("red");
     };
 
     const onKeyDown = (e: KeyboardEvent) => {
@@ -91,7 +119,8 @@ function Game() {
     return () => {
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [currentGuess, guessArr]);
+
+  }, [currentGuess, guessArr, stateArr]);
 
 
   return (
@@ -106,13 +135,14 @@ function Game() {
       <div className="gridDiv">
         <Grid answer={answer[0]}
           tableRef={tableRef}
+          gridChecker={GridChecker}
           currentGuess={currentGuess}
           guessArr={guessArr}
-          maxGuesses={6}
+          maxGuesses={numGuesses}
           wordLength={wordLength} />
       </div>
       <div className="warning">
-        <span>{warning}</span>
+        <span style={{color: (warningColor)}}>{warning}</span>
       </div>
     </div>
   )
