@@ -36,7 +36,7 @@ CLI Commands:
     
 ## Authors
 
-**Eli "Vio" Fischel** 
+**Eli "Vio" Fischl** 
 
 - [Link to Github](https://github.com/Vio-Eli)
 
