@@ -6,12 +6,13 @@ import { BrowserRouter as Router, Routes, Route, HashRouter } from 'react-router
 
 function App() {
   return (
+
     <HashRouter basename='/'>
       <div className="App">
         <header className="App-header">
           <Routes>
-            <Route path='/home' element={<Home />} />
-            <Route path='/' element={<Game />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/game' element={<Game />} />
           </Routes>
         </header>
       </div>
