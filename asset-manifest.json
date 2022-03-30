@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.1aebec64.css",
-    "main.js": "/static/js/main.67b8c786.js",
-    "index.html": "/index.html",
-    "main.1aebec64.css.map": "/static/css/main.1aebec64.css.map",
-    "main.67b8c786.js.map": "/static/js/main.67b8c786.js.map"
+    "main.css": "/modular_octowordle/static/css/main.1aebec64.css",
+    "main.js": "/modular_octowordle/static/js/main.67b8c786.js",
+    "index.html": "/modular_octowordle/index.html",
+    "main.1aebec64.css.map": "/modular_octowordle/static/css/main.1aebec64.css.map",
+    "main.67b8c786.js.map": "/modular_octowordle/static/js/main.67b8c786.js.map"
   },
   "entrypoints": [
     "static/css/main.1aebec64.css",
