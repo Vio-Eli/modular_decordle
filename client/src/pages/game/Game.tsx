@@ -34,15 +34,13 @@ function getWords(wordLength: number, numWords: number): string[] {
 
 function Game() {
 
+  const wordLength: number = 5;
   const tableRef = useRef<HTMLTableElement>(null);
+
   const [warning, setWarning] = useState('');
   const [guessArr, setGuessArr] = useState<string[]>([]);
   const [currentGuess, setCurrentGuess] = useState<string>("");
-
-  const wordLength: number = 5;
-
-  let answer: string = getWords(wordLength, 1)[0];
-  console.log(answer);
+  const [answer, setAnswer] = useState<string[]>(getWords(wordLength, 1));
 
   useEffect(() => {
 
@@ -106,7 +104,7 @@ function Game() {
         </h3>
       </div>
       <div className="gridDiv">
-        <Grid answer={answer}
+        <Grid answer={answer[0]}
           tableRef={tableRef}
           currentGuess={currentGuess}
           guessArr={guessArr}
