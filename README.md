@@ -2,12 +2,9 @@
 
 Modular Octowordle is an unlimited Wordle with a few twists.
 
-
-## Badges
-
-Badges from: [shields.io](https://shields.io/)
-
-![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/Vio-Eli/modular_octowordle?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/jsncorn/work-order?style=flat&logo=appveyor)
+<p style="text-align: center;">
+  ![Badge for GitHub repo top language](https://img.shields.io/github/languages/top/Vio-Eli/modular_octowordle?style=flat&logo=appveyor) ![Badge for GitHub last commit](https://img.shields.io/github/last-commit/jsncorn/work-order?style=flat&logo=appveyor)
+</p>
 
 ## Deployment
 
