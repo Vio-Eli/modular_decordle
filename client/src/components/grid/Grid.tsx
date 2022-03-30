@@ -1,35 +1,42 @@
-import { Ref } from 'react';
+import { Ref, useState } from 'react';
 import React from 'react';
 import './Grid.scss';
 import { TypeOfTag } from 'typescript';
+import check, { checked } from '../../utils/check';
+
+
 
 interface GridProps {
   tableRef: Ref<HTMLTableElement>,
   currentGuess: string,
   guessArr: string[],
   maxGuesses: number,
-  wordLength: number
+  wordLength: number,
 }
 
-export default function Grid(props: GridProps) {
+function letterDivs(wordRow: string, wordLength: number) {
+  let word: string[] = wordRow.split("");
+  return word
+    .concat(Array(wordLength).fill(""))
+    .slice(0, wordLength)
+    .map((letter, i) => {
+      return(
+        <td key={i} aria-live={"assertive"}>{letter.toUpperCase()}</td>
+      );
+    });
+}
 
-  //set react table element reference with null as default value
+// Array for previously checked words
+let checkedArr: checked[] = [];
+
+export default function Grid(props: GridProps) {
 
   const tableRows = Array(props.maxGuesses)
   .fill(undefined)
   .map((_, i) => {
     const wordRow = [...props.guessArr, props.currentGuess][i] ?? "";
-    const word = wordRow.split("");
-    const letterDivs = word
-    .concat(Array(props.wordLength).fill(""))
-    .slice(0, props.wordLength)
-    .map((letter, i) => {
-      return(
-        <td key={i}>{letter}</td>
-      );
-    });
     return (
-      <tr key={i} aria-live={"assertive"}>{letterDivs}</tr>
+      <tr key={i}>{letterDivs(wordRow, props.wordLength)}</tr>
     );
   })
 
