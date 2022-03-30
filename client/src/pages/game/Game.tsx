@@ -11,7 +11,6 @@ enum GameState {
   Lost
 }
 
-
 const newGame = () => {
   window.location.reload();
 }
@@ -29,7 +28,7 @@ function getWords(wordLength: number, numWords: number): string[] {
     }
   }
 
-  console.log(wordArr);
+  //console.log(wordArr);
   return wordArr;
 }
 
@@ -42,7 +41,8 @@ function Game() {
 
   const wordLength: number = 5;
 
-  let answer: string = "muddy"
+  let answer: string = getWords(wordLength, 1)[0];
+  console.log(answer);
 
   useEffect(() => {
 
