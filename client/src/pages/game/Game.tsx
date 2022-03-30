@@ -16,7 +16,7 @@ const newGame = () => {
 
 function getWords(wordLength: number, numWords: number): string[] {
 
-  const eligible = dict.filter((word) => word.length === wordLength);
+  let eligible = dict.filter((word) => word.length === wordLength);
   let wordArr: string[] = [];
 
   for (let i = 0; i < numWords; i++) {
@@ -26,6 +26,8 @@ function getWords(wordLength: number, numWords: number): string[] {
       wordArr.push(word);
     }
   }
+
+  eligible = [];
 
   //console.log(wordArr);
   return wordArr;
