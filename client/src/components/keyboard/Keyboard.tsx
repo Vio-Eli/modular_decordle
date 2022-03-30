@@ -4,12 +4,24 @@ let keyboard: string[][] = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
     ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
     ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE']
-];
+];  
 
 export default function Keyboard(){
 
-    
+    //int i: number = keyboard[].length;
+    //[10]
+    //[9]
+    //[9]
 }
+
+/*
+keyboard.forEach((row, i) => {
+    row.map((key, j) => {
+        return (
+            <tr 
+        );
+    });
+});*/
 
 /*
 get color from checked[]
