@@ -1,6 +1,6 @@
 # Modular Octowordle
 
-Modular Octowordle is an unlimited Wordle with a few twists.
+Modular Octowordle is an unlimited Wordle with a few twists. All Dictionary words are allowed, but inappropriate or curse words were filtered out. 
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/Vio-Eli/modular_octowordle?style=flat&logo=appveyor"/> 
@@ -15,6 +15,8 @@ Deployed Link: [Github Pages](https://vio-eli.github.io/modular_octowordle/)
 - [TypeScript](https://www.npmjs.com/package/typescript)
 - [SASS/SCSS](https://www.npmjs.com/package/sass)
 - [React](https://www.npmjs.com/package/react)
+## Disclaimer
+Git commits are not accurate as contributions were made in a Visual Studio Code Liveshare.
 
 ## Installation
 
