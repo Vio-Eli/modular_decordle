@@ -10,6 +10,7 @@ export default function check(guess: string, ans: string): checked[] {
     return guess.split("").map((letter, i) => {
         if (letter === ans[i]) {
             // add class to letter
+            ans = ans.slice(0, i) + "*" + ans.slice(i+1)// Remove letter at index i of correct answer
             return { letter, color: 'green' }
         } else if ((j = ans.indexOf(letter)) !== -1) {
             ans = ans.slice(0, j) + "*" + ans.slice(j+1); // Remove letter at index j of correct answer
