@@ -4,11 +4,25 @@ $background-dark: #181a1b;
     > table {
         > tbody {
             > tr {
+                // Table Row Alignment
+                display: flex;
                 > td {
+
+                    // Individual cell styling
                     background-color: $background-dark;
                     width: 40px;
                     height: 40px;
                     border: 1px white solid;
+                    color: white;
+
+                    // Font Styling
+                    font-weight: bold;
+                    font-size: 30px;
+
+                    // Font Alignment
+                    align-items: center;
+                    justify-content: center;
+                    
                 }
             }
         }
