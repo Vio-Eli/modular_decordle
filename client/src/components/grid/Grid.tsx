@@ -7,31 +7,26 @@ import check, { checked } from '../../utils/check';
 interface GridProps {
   answer: string,
   tableRef: Ref<HTMLTableElement>,
+  gridChecker(gridNum: number, gridState: GridState): void,
   currentGuess: string,
   guessArr: string[],
   maxGuesses: number,
   wordLength: number,
 }
 
-/*function letterDivs(wordRow: string, wordLength: number) {
-  let word: string[] = wordRow.split("");
-  return word
-    .concat(Array(wordLength).fill(""))
-    .slice(0, wordLength)
-    .map((letter, i) => {
-      return(
-        <td key={i} aria-live={"assertive"}>{letter.toUpperCase()}</td>
-      );
-    });
-}*/
+export enum GridState {
+  Playing,
+  Won,
+  Lost
+}
 
-function letterDivs(wordRow: string, wordLength: number) {
+function letterDivs(wordRow: string, wordLength: number, gridState: GridState) {
   let i: number;
   if ((i = oldGuess.indexOf(wordRow)) !== -1) {
     return checkedArr[i].map((tup, i) => {
       let color: string = tup.color!;
       return(
-        <td key={i} aria-live={"off"} style={{backgroundColor: (color)}}> {tup.letter.toUpperCase()}</td>
+        <td key={i} style={{backgroundColor: (color)}}> {tup.letter.toUpperCase()}</td>
       );
     });
   } else {
@@ -41,7 +36,7 @@ function letterDivs(wordRow: string, wordLength: number) {
     .slice(0, wordLength)
     .map((letter, i) => {
       return(
-        <td key={i} aria-live={"assertive"}>{letter.toUpperCase()}</td>
+        <td key={i} >{letter.toUpperCase()}</td>
       );
     });
   }
@@ -50,23 +45,39 @@ function letterDivs(wordRow: string, wordLength: number) {
 // Array for previously checked words
 let oldGuess: string[] = []//["hinge"];
 let checkedArr: checked[][] = [];//[[{letter: 'h', color: 'green'}, {letter: 'i', color: 'goldenrod'}, {letter: 'n', color: '#b59f3b'}, {letter: 'g', color: 'grey'}, {letter: 'e', color: 'gray'}]];
+let State: GridState = GridState.Playing
 
 export default function Grid(props: GridProps) {
+
+  let currentGuess: string = props.currentGuess;
 
   props.guessArr.forEach((word, i) => {
     if (!oldGuess.includes(word)) {
       checkedArr.push(check(word, props.answer));
       oldGuess.push(word);
-      //console.log(checkedArr);
+
+      if (word === props.answer) {
+        State = GridState.Won;
+        props.gridChecker(0, State);
+      }
     }
   });
+
+  if (props.guessArr.length === props.maxGuesses) {
+    State = GridState.Lost;
+    props.gridChecker(0, State);
+  }
+
+  if (State !== GridState.Playing) {
+    currentGuess = "";
+  }
 
   const tableRows = Array(props.maxGuesses)
   .fill(undefined)
   .map((_, i) => {
-    const wordRow = [...props.guessArr, props.currentGuess][i] ?? "";
+    const wordRow = [...props.guessArr, currentGuess][i] ?? "";
     return (
-      <tr key={i}>{letterDivs(wordRow, props.wordLength)}</tr>
+      <tr key={i}>{letterDivs(wordRow, props.wordLength, State)}</tr>
     );
   })
 
