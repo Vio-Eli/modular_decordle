@@ -16,14 +16,14 @@ export default function Home() {
                     </tr>
                     <tr id='playBtn'>
                         <td className='left play'>
-                            <Link to='/'>
+                            <Link to='/game'>
                                 <div>
                                     play
                                 </div>
                             </Link>
                         </td>
                         <td className='right wordle'>
-                            <Link to='/'>
+                            <Link to='/game'>
                                 <div>
                                     mod wordle
                                 </div>

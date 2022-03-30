@@ -10,8 +10,8 @@ function App() {
       <div className="App">
         <header className="App-header">
           <Routes>
-            <Route path='/home' element={<Home />} />
-            <Route path='/' element={<Game />} />
+            <Route path='/' element={<Home />} />
+            <Route path='/game' element={<Game />} />
           </Routes>
         </header>
       </div>
