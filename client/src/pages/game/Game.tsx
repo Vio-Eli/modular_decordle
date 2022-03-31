@@ -1,6 +1,6 @@
 import React, { Ref, useState, useRef, useEffect, useCallback } from 'react';
 import Grid, { GridState } from '../../components/grid/Grid';
-import {Helmet} from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import Keyboard from '../../components/keyboard/Keyboard';
 import dict from '../../utils/dict.json';
 import pick from '../../utils/pick';
@@ -36,33 +36,33 @@ function getWords(wordLength: number, numWords: number): string[] {
 }
 
 function generateGrids(
-    answer: string[],
-    currentGuess: string,
-    guessArr: string[],
-    numGuesses: number,
-    wordLength: number,
-    numGrids: number,
-    gridChecker: (gridNum: number, gridState: GridState) => void,
-    stateArr: number[]
-  ): JSX.Element[] {
+  answer: string[],
+  currentGuess: string,
+  guessArr: string[],
+  numGuesses: number,
+  wordLength: number,
+  numGrids: number,
+  gridChecker: (gridNum: number, gridState: GridState) => void,
+  stateArr: number[]
+): JSX.Element[] {
 
-    let grid: JSX.Element[] = [];
+  let grid: JSX.Element[] = [];
 
-    for (let i: number = 0; i<numGrids; i++) {
-      grid.push(
-        <Grid
-          key={i} 
-          answer={answer[i]}
-          gridChecker={gridChecker}
-          currentGuess={currentGuess}
-          guessArr={guessArr}
-          maxGuesses={numGuesses}
-          wordLength={wordLength}
-          gridNum={i}
-          gridStates={stateArr} />
-      )
-    }
-    return grid;
+  for (let i: number = 0; i < numGrids; i++) {
+    grid.push(
+      <Grid
+        key={i}
+        answer={answer[i]}
+        gridChecker={gridChecker}
+        currentGuess={currentGuess}
+        guessArr={guessArr}
+        maxGuesses={numGuesses}
+        wordLength={wordLength}
+        gridNum={i}
+        gridStates={stateArr} />
+    )
+  }
+  return grid;
 }
 
 let stateArr: number[] = [0];
@@ -90,45 +90,46 @@ function Game() {
     }, [],
   );
 
-  useEffect(() => {
+  //create log on key press
+  const onKey = (key: string) => {
+    key = key.toLowerCase();
 
-    //create log on key press
-    const onKey = (key: string) => {
+    if (/^[a-z]$/i.test(key)) {
+      setCurrentGuess((currentGuess) =>
+        (currentGuess + key.toLocaleLowerCase()).slice(0, wordLength)
+      );
 
-      if (/^[a-z]$/i.test(key)) {
-        setCurrentGuess((currentGuess) =>
-          (currentGuess + key.toLocaleLowerCase()).slice(0, wordLength)
-        );
+    } else if (key === "backspace" || key === "⌫") {
+      setCurrentGuess((currentGuess) => currentGuess.slice(0, -1));
 
-      } else if (key === "Backspace") {
-        setCurrentGuess((currentGuess) => currentGuess.slice(0, -1));
-
-      } else if (key === "Enter") {
-        if (currentGuess.length === 0) {
-          setWarning("Please enter a word");
-          setWarningColor("yellow");
-          return;
-        }
-        if (currentGuess.length !== wordLength) {
-          setWarning("Too Short!");
-          setWarningColor("yellow");
-          return;
-        }
-        if (!dict.includes(currentGuess)) {
-          setWarning("Invalid Word");
-          setWarningColor("yellow");
-          return;
-        }
-        if (guessArr.includes(currentGuess)) {
-          setWarning("Can't use the same word twice!");
-          setWarningColor("yellow");
-          return;
-        }
-
-        setGuessArr((guessArr) => guessArr.concat([currentGuess]));
-        setCurrentGuess((currentGuess) => "");
+    } else if (key === "enter") {
+      if (currentGuess.length === 0) {
+        setWarning("Please enter a word");
+        setWarningColor("yellow");
+        return;
       }
-    };
+      if (currentGuess.length !== wordLength) {
+        setWarning("Too Short!");
+        setWarningColor("yellow");
+        return;
+      }
+      if (!dict.includes(currentGuess)) {
+        setWarning("Invalid Word");
+        setWarningColor("yellow");
+        return;
+      }
+      if (guessArr.includes(currentGuess)) {
+        setWarning("Can't use the same word twice!");
+        setWarningColor("yellow");
+        return;
+      }
+
+      setGuessArr((guessArr) => guessArr.concat([currentGuess]));
+      setCurrentGuess((currentGuess) => "");
+    }
+  };
+
+  useEffect(() => {
 
     // Check Callback GridState --> See if player won or not
     if (stateArr.every(x => x === 1)) {
@@ -183,8 +184,8 @@ function Game() {
                 setGuessArr([]); //  Resets the Guess Array
               }}
             /></td>
-        </tr>
-        <tr>
+          </tr>
+          <tr>
             <td><span>Grid Amount: {numGrids}</span></td>
             <td><input type='range' min='1' max='10'
               value={numGrids}
@@ -198,7 +199,7 @@ function Game() {
                 setGuessArr([]); //  Resets the Guess Array
               }}
             /></td>
-        </tr>
+          </tr>
         </tbody>
       </table>
       <div className="gridDiv">
@@ -216,7 +217,7 @@ function Game() {
       <div className="warning">
         <span style={{ color: (warningColor) }}>{warning}</span>
       </div>
-      <Keyboard/>
+      <Keyboard onkey={onKey}/>
     </div>
   )
 }

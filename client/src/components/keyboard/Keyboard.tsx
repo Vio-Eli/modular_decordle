@@ -7,7 +7,11 @@ let keyboard: string[][] = [
     ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', '⌫']
 ];
 
-function Keyboard() {
+interface KeyboardProps {
+    onkey(key: string): void
+}
+
+function Keyboard(props: KeyboardProps) {
 
     function keyMap(row: string[]) {
         return row.map((key, i) => {
@@ -18,7 +22,7 @@ function Keyboard() {
                 id = 'delete'
             }
             return(
-                <button key={i} id={id} onClick={() => console.log(key)}>{key}</button>
+                <button key={i} id={id} onClick={() => props.onkey(key)}>{key}</button>
             );
         })
     }
