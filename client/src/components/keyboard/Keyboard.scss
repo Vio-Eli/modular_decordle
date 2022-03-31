@@ -2,14 +2,14 @@ $background-dark: #4E4847;
 
 
 .keyboardWrapper {
-    >tr>td {
-            background-color: $background-dark;
-            width: 40px;
-            height: 40px;
-            border: 1px grey solid;
-            color: white;
-            font-weight: bold;
-            align-items: center;
-            justify-content: center;
-        }
+    >div>button {
+        background-color: $background-dark;
+        padding: auto;
+        font-size: 30;
+        border: 1px grey solid;
+        color: rgb(226, 17, 156);
+        font-weight: bold;
+        align-items: center;
+        justify-content: center;
     }
+}
