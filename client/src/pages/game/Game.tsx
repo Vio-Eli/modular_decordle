@@ -1,6 +1,5 @@
 import React, { Ref, useState, useRef, useEffect, useCallback } from 'react';
 import Grid, { GridState } from '../../components/grid/Grid';
-import { Helmet } from 'react-helmet';
 import Keyboard from '../../components/keyboard/Keyboard';
 import dict from '../../utils/dict.json';
 import pick from '../../utils/pick';
@@ -29,6 +28,7 @@ function getWords(wordLength: number, numWords: number): string[] {
     }
   }
 
+
   eligible = [];
 
   //console.log(wordArr);
@@ -51,15 +51,15 @@ function generateGrids(
   for (let i: number = 0; i < numGrids; i++) {
     grid.push(
       <Grid
-        key={i}
-        answer={answer[i]}
-        gridChecker={gridChecker}
-        currentGuess={currentGuess}
-        guessArr={guessArr}
-        maxGuesses={numGuesses}
-        wordLength={wordLength}
-        gridNum={i}
-        gridStates={stateArr} />
+        key={ i }
+        answer={ answer[i] }
+        gridChecker={ gridChecker }
+        currentGuess={ currentGuess }
+        guessArr={ guessArr }
+        maxGuesses={ numGuesses }
+        wordLength={ wordLength }
+        gridNum={ i }
+        gridStates={ stateArr } />
     )
   }
   return grid;
@@ -83,6 +83,8 @@ function Game() {
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
   const [gridArr, setGridArr] = useState<JSX.Element[]>()
 
+  const [inputDisabled, setInputDisabled] = useState<boolean>(false);
+
   // Callback for each grid to set if won or lost
   let GridChecker = useCallback(
     (gridNum: number, gridState: GridState) => {
@@ -101,7 +103,6 @@ function Game() {
 
     } else if (key === "backspace" || key === "⌫") {
       setCurrentGuess((currentGuess) => currentGuess.slice(0, -1));
-
     } else if (key === "enter") {
       if (currentGuess.length === 0) {
         setWarning("Please enter a word");
@@ -131,6 +132,13 @@ function Game() {
 
   useEffect(() => {
 
+    // Disabled slider bars if user has typed or entered a word
+    if(currentGuess.length > 0 || guessArr.length > 0) {
+      setInputDisabled(true);
+    } else if (currentGuess.length === 0) {
+      setInputDisabled(false);
+    }
+
     // Check Callback GridState --> See if player won or not
     if (stateArr.every(x => x === 1)) {
       setGameState(gameState => GameState.Won);
@@ -155,26 +163,27 @@ function Game() {
       document.removeEventListener("keydown", onKeyDown);
     };
 
-  }, [currentGuess, guessArr, stateArr]);
+  }, [currentGuess, guessArr, stateArr, inputDisabled]);
 
 
   return (
     <div className="gameWrapper">
       <div className="titleWrapper">
-        <button onClick={newGame}>new</button>
+        <button onClick={ newGame }>new</button>
         <h3>
-          <span style={{ color: "#e07680" }}> modular </span>
-          <span style={{ color: "#64da7c" }}> wordle </span>
+          <span style={ { color: "#e07680" } }> modular </span>
+          <span style={ { color: "#64da7c" } }> wordle </span>
         </h3>
 
       </div>
       <table id='sliders'>
         <tbody>
           <tr>
-            <td><span>Length: {wordLength}</span></td>
+            <td><span>Length: { wordLength }</span></td>
             <td id='lengthSlider'><input type='range' min='4' max='11'
-              value={wordLength}
-              onChange={(e) => {
+              value={ wordLength }
+              disabled={ inputDisabled }
+              onChange={ (e) => {
                 const inputLength = +e.target.value;
                 setGameState(GameState.Playing);
                 setCurrentGuess(""); // Empties the current guess
@@ -182,14 +191,15 @@ function Game() {
                 setWordLength(inputLength); // Sets the word length to the slider
                 setAnswer(getWords(inputLength, numGrids)); // Creates new word to solve
                 setGuessArr([]); //  Resets the Guess Array
-              }}
+              } }
             /></td>
           </tr>
           <tr>
-            <td><span>Grid Amount: {numGrids}</span></td>
+            <td><span>Grid Amount: { numGrids }</span></td>
             <td><input type='range' min='1' max='10'
-              value={numGrids}
-              onChange={(e) => {
+              value={ numGrids }
+              disabled={ inputDisabled }
+              onChange={ (e) => {
                 const gridCount = +e.target.value;
                 setGameState(GameState.Playing);
                 setCurrentGuess(""); // Empties the current guess
@@ -197,13 +207,13 @@ function Game() {
                 setNumGrids(gridCount);
                 setAnswer(getWords(wordLength, gridCount)); // Creates new words to solve
                 setGuessArr([]); //  Resets the Guess Array
-              }}
+              } }
             /></td>
           </tr>
         </tbody>
       </table>
       <div className="gridDiv">
-        {generateGrids(
+        { generateGrids(
           answer,
           currentGuess,
           guessArr,
@@ -212,12 +222,12 @@ function Game() {
           numGrids,
           GridChecker,
           stateArr
-        )}
+        ) }
       </div>
       <div className="warning">
-        <span style={{ color: (warningColor) }}>{warning}</span>
+        <span style={ { color: (warningColor) } }>{ warning }</span>
       </div>
-      <Keyboard onkey={onKey}/>
+      <Keyboard onkey={ onKey } />
     </div>
   )
 }
