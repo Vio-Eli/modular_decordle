@@ -8,17 +8,21 @@ let keyboard: string[][] = [
 ];
 
 function Keyboard() {
+
+    function keyMap(row: string[]) {
+        return row.map((key, i) => {
+            return(
+                <button key={i} onClick={() => console.log(key)}>{key}</button>
+            );
+        })
+    }
+
+
     return (
         <div className="keyboardWrapper">
-            {keyboard.map((row, index) => {
-                <tr key={index}>
-                    {row.map((letter, jdex) => {
-                        <td key={jdex}>
-                            {letter}
-                        </td>
-                    })}
-                </tr>
-            })}
+            <div className="buttonDiv">{keyMap(keyboard[0])}</div>
+            <div className="buttonDiv">{keyMap(keyboard[1])}</div>
+            <div className="buttonDiv">{keyMap(keyboard[2])}</div>
         </div>
     )
 }
