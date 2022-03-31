@@ -2,6 +2,11 @@ import React from 'react';
 import './Home.scss';
 import { Link } from 'react-router-dom';
 
+const githubHandler = () => {
+    window.open("https://github.com/Vio-Eli/modular_octowordle")
+}
+
+
 export default function Home() {
     return (
         <div className='homeWrapper'>
@@ -31,8 +36,8 @@ export default function Home() {
                         </td>
                     </tr>
                     <tr id='github'>
-                        <td className='left view'><a href="https://github.com/Vio-Eli/modular_octowordle"><div> view </div></a></td>
-                        <td className='right github'><a href="https://github.com/Vio-Eli/modular_octowordle"><div> github </div></a></td>
+                        <td className='left view' onClick={githubHandler}><div> view </div></td>
+                        <td className='right github' onClick={githubHandler}><div> github </div></td>
                     </tr>
                 </tbody>
             </table>
