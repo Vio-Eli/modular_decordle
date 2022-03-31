@@ -1,6 +1,6 @@
 # Modular Octowordle
 
-Modular Octowordle is an unlimited Wordle with a few twists. All Dictionary words are allowed, but inappropriate or curse words were filtered out. 
+Modular Octowordle is an unlimited Wordle with a few twists. All Dictionary words are allowed, but inappropriate or curse words were filtered out. You can select a letter length ranging from 4 to 11. And best of all, you can select how many words you wish to solve at once ranging from 1 grid, up to 10 of them.
 
 <p align="center">
   <img src="https://img.shields.io/github/languages/top/Vio-Eli/modular_octowordle?style=flat&logo=appveyor"/> 
