@@ -168,8 +168,8 @@ function Game() {
 
       </div>
       <table id='sliders'>
-        <tr>
-          <div className='lengthSlider'>
+        <tbody>
+          <tr>
             <td><span>Length: {wordLength}</span></td>
             <td id='lengthSlider'><input type='range' min='4' max='11'
               value={wordLength}
@@ -183,10 +183,8 @@ function Game() {
                 setGuessArr([]); //  Resets the Guess Array
               }}
             /></td>
-          </div>
         </tr>
         <tr>
-          <div className='gridAmountSlider'>
             <td><span>Grid Amount: {numGrids}</span></td>
             <td><input type='range' min='1' max='10'
               value={numGrids}
@@ -200,8 +198,8 @@ function Game() {
                 setGuessArr([]); //  Resets the Guess Array
               }}
             /></td>
-          </div>
         </tr>
+        </tbody>
       </table>
       <div className="gridDiv">
         {generateGrids(
