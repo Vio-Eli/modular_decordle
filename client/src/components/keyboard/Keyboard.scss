@@ -1,0 +1,15 @@
+$background-dark: #4E4847;
+
+
+.keyboardWrapper {
+    >tr>td {
+            background-color: $background-dark;
+            width: 40px;
+            height: 40px;
+            border: 1px grey solid;
+            color: white;
+            font-weight: bold;
+            align-items: center;
+            justify-content: center;
+        }
+    }

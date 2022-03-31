@@ -1,6 +1,7 @@
 $background-dark: #181a1b;
 
 .gridWrapper {
+    padding: 5px;
     > table {
 
         border-spacing: 0px;
@@ -13,15 +14,16 @@ $background-dark: #181a1b;
 
                     // Individual cell styling
                     background-color: $background-dark;
-                    width: 40px;
-                    height: 40px;
-                    //border: 1px white solid;
-                    /**/
+                    width: 30px;
+                    height: 30px;
+
+                    border: 1px white solid;
+                    /*
                     border-left: 1px white solid;
                     border-right: 1px white solid;
                     border-top: 1px white solid;
                     border-bottom: 1px white solid;
-                    /**/
+                    */
                     color: white;
 
 

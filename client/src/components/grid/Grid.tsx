@@ -1,4 +1,4 @@
-import { Ref, useState } from 'react';
+import { useRef, Ref, useState } from 'react';
 import React from 'react';
 import './Grid.scss';
 import { TypeOfTag } from 'typescript';
@@ -6,12 +6,12 @@ import check, { checked } from '../../utils/check';
 
 interface GridProps {
   answer: string,
-  tableRef: Ref<HTMLTableElement>,
   gridChecker(gridNum: number, gridState: GridState): void,
   currentGuess: string,
   guessArr: string[],
   maxGuesses: number,
   wordLength: number,
+  gridNum: number,
 }
 
 export enum GridState {
@@ -25,20 +25,20 @@ function letterDivs(wordRow: string, wordLength: number, gridState: GridState) {
   if ((i = oldGuess.indexOf(wordRow)) !== -1) {
     return checkedArr[i].map((tup, i) => {
       let color: string = tup.color!;
-      return(
-        <td key={i} style={{backgroundColor: (color)}}> {tup.letter.toUpperCase()}</td>
+      return (
+        <td key={i} style={{ backgroundColor: (color) }}> {tup.letter.toUpperCase()}</td>
       );
     });
   } else {
     let word: string[] = wordRow.split("");
     return word
-    .concat(Array(wordLength).fill(""))
-    .slice(0, wordLength)
-    .map((letter, i) => {
-      return(
-        <td key={i} >{letter.toUpperCase()}</td>
-      );
-    });
+      .concat(Array(wordLength).fill(""))
+      .slice(0, wordLength)
+      .map((letter, i) => {
+        return (
+          <td key={i} >{letter.toUpperCase()}</td>
+        );
+      });
   }
 }
 
@@ -54,17 +54,18 @@ export default function Grid(props: GridProps) {
   props.guessArr.forEach((word, i) => {
     if (!oldGuess.includes(word)) {
       checkedArr.push(check(word, props.answer));
+      console.log(props.answer);
       oldGuess.push(word);
     }
     if (word === props.answer) {
       State = GridState.Won;
-      props.gridChecker(0, State);
+      props.gridChecker(props.gridNum, State);
     }
   });
 
   if (props.guessArr.length === props.maxGuesses && State !== GridState.Won) {
     State = GridState.Lost;
-    props.gridChecker(0, State);
+    props.gridChecker(props.gridNum, State);
   }
 
   if (State !== GridState.Playing) {
@@ -72,19 +73,19 @@ export default function Grid(props: GridProps) {
   }
 
   const tableRows = Array(props.maxGuesses)
-  .fill(undefined)
-  .map((_, i) => {
-    const wordRow = [...props.guessArr, currentGuess][i] ?? "";
-    return (
-      <tr key={i}>{letterDivs(wordRow, props.wordLength, State)}</tr>
-    );
-  })
+    .fill(undefined)
+    .map((_, i) => {
+      const wordRow = [...props.guessArr, currentGuess][i] ?? "";
+      return (
+        <tr key={i}>{letterDivs(wordRow, props.wordLength, State)}</tr>
+      );
+    })
 
   return (
     <div className="gridWrapper">
-      <table ref={props.tableRef}>
-          <tbody>{tableRows}</tbody>
-        </table>
+      <table>
+        <tbody>{tableRows}</tbody>
+      </table>
     </div>
   )
 }

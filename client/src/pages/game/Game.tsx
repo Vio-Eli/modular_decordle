@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { Ref, useState, useRef, useEffect, useCallback } from 'react';
 import Grid, { GridState } from '../../components/grid/Grid';
+import Keyboard from '../../components/keyboard/Keyboard';
 import dict from '../../utils/dict.json';
 import pick from '../../utils/pick';
 import './Game.scss';
@@ -33,14 +34,42 @@ function getWords(wordLength: number, numWords: number): string[] {
   return wordArr;
 }
 
+function generateGrids(
+    answer: string[],
+    currentGuess: string,
+    guessArr: string[],
+    numGuesses: number,
+    wordLength: number,
+    numGrids: number,
+    gridChecker: (gridNum: number, gridState: GridState) => void
+  ): JSX.Element[] {
+
+    let grid: JSX.Element[] = [];
+
+    for (let i: number = 0; i<numGrids; i++) {
+      grid.push(
+        <Grid
+          key={i} 
+          answer={answer[i]}
+          gridChecker={gridChecker}
+          currentGuess={currentGuess}
+          guessArr={guessArr}
+          maxGuesses={numGuesses}
+          wordLength={wordLength}
+          gridNum={i} />
+      )
+    }
+    return grid;
+}
+
 let stateArr: number[] = [0];
 
 function Game() {
 
-  const wordLength: number = 5;
-  const numGrids: number = 1;
+  const [wordLength, setWordLength] = useState<number>(5);
+  const [numGrids, setNumGrids] = useState<number>(1);
+
   const numGuesses: number = numGrids + 5;
-  const tableRef = useRef<HTMLTableElement>(null);
 
   const [warning, setWarning] = useState('');
   const [warningColor, setWarningColor] = useState<string>('red');
@@ -49,6 +78,7 @@ function Game() {
   const [answer, setAnswer] = useState<string[]>(getWords(wordLength, 1));
 
   const [gameState, setGameState] = useState<GameState>(GameState.Playing);
+  const [gridArr, setGridArr] = useState<JSX.Element[]>()
 
   // Callback for each grid to set if won or lost
   let GridChecker = useCallback(
@@ -66,7 +96,6 @@ function Game() {
         setCurrentGuess((currentGuess) =>
           (currentGuess + key.toLocaleLowerCase()).slice(0, wordLength)
         );
-        tableRef.current?.focus();
 
       } else if (key === "Backspace") {
         setCurrentGuess((currentGuess) => currentGuess.slice(0, -1));
@@ -133,18 +162,62 @@ function Game() {
           <span style={{ color: "#e07680" }}> modular </span>
           <span style={{ color: "#64da7c" }}> wordle </span>
         </h3>
+
       </div>
+      <table id='sliders'>
+        <tr>
+          <div className='lengthSlider'>
+            <td><span>Length: {wordLength}</span></td>
+            <td id='lengthSlider'><input type='range' min='4' max='11'
+              value={wordLength}
+              onChange={(e) => {
+                const inputLength = +e.target.value;
+                setGameState(GameState.Playing);
+                setCurrentGuess(""); // Empties the current guess
+                setWarning(""); // Empties any warnings put
+                setWordLength(inputLength); // Sets the word length to the slider
+                setAnswer(getWords(inputLength, 1)); // Creates new word to solve
+                setGuessArr([]); //  Resets the Guess Array
+              }}
+            /></td>
+          </div>
+        </tr>
+        <tr>
+          <div className='gridAmountSlider'>
+            <td><span>Grid Amount: {numGrids}</span></td>
+            <td><input type='range' min='1' max='10'
+              value={numGrids}
+              onChange={(e) => {
+                const gridCount = +e.target.value;
+                setGameState(GameState.Playing);
+                setCurrentGuess(""); // Empties the current guess
+                setWarning(""); // Empties any warnings put
+                setNumGrids(gridCount);
+                setAnswer(getWords(wordLength, gridCount)); // Creates new words to solve
+                setGuessArr([]); //  Resets the Guess Array
+              }}
+            /></td>
+          </div>
+        </tr>
+      </table>
+      <Helmet>
       <div className="gridDiv">
-        <Grid answer={answer[0]}
-          tableRef={tableRef}
-          gridChecker={GridChecker}
-          currentGuess={currentGuess}
-          guessArr={guessArr}
-          maxGuesses={numGuesses}
-          wordLength={wordLength} />
+        {generateGrids(
+          answer,
+          currentGuess,
+          guessArr,
+          numGuesses,
+          wordLength,
+          numGrids,
+          GridChecker
+        )}
       </div>
+      </Helmet>
       <div className="warning">
-        <span style={{color: (warningColor)}}>{warning}</span>
+        <span style={{ color: (warningColor) }}>{warning}</span>
+      </div>
+      <div>
+        <Keyboard/>
       </div>
     </div>
   )
