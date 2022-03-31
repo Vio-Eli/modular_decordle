@@ -2,7 +2,28 @@ $background-dark: #181a1b;
 
 .gameWrapper {
 
+    >#sliders {
+        margin: auto;
+        >tr {
+            >.lengthSlider, .gridAmountSlider {
+            align-items: center;
+            vertical-align: middle;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            td>span {
+                font-size: 16px;
+                margin-right: 5px;
+            }
+            td>input {
+                margin: 0px;
+                position: relative;
+                top: 2px;
+            }
+    }
+}
 
+    }
     > .titleWrapper {
     color: #F08080;
     display: flex;
@@ -31,6 +52,8 @@ $background-dark: #181a1b;
 
     > .gridDiv {
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     }
