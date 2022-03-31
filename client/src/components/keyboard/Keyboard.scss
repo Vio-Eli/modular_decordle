@@ -6,7 +6,7 @@ $background-dark: #4E4847;
     width: 100%;
     align-items: center;
     justify-content: center;
-
+    margin-top: 10px;
     >div {
 
         >button {
@@ -35,13 +35,24 @@ $background-dark: #4E4847;
 
 @media (max-width: global.$iphone-breakpoint) {
     .keyboardWrapper {
-        margin-top: 10px;
-
         >div {
             >button {
                 width: 25px;
                 height: 30px;
                 line-height: 25px;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media (max-width: global.$tablet-breakpoint) {
+    .keyboardWrapper {
+        >div {
+            >button {
+                width: 30px;
+                height: 35px;
+                line-height: 28px;
                 font-size: 16px;
             }
         }
