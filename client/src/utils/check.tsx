@@ -3,7 +3,7 @@ export interface checked {
     color?: string
 }
 
-export default function check(guess: string, ans: string): checked[] {
+export default function check(guess: string, ans: string): Array<checked> {
     ans = ans.toLowerCase();
     guess = guess.toLowerCase(); // Just to be safe. Should already be lowercase
     let j: number;
