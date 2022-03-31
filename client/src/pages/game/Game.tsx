@@ -1,5 +1,6 @@
 import React, { Ref, useState, useRef, useEffect, useCallback } from 'react';
 import Grid, { GridState } from '../../components/grid/Grid';
+import {Helmet} from 'react-helmet';
 import Keyboard from '../../components/keyboard/Keyboard';
 import dict from '../../utils/dict.json';
 import pick from '../../utils/pick';
@@ -41,7 +42,8 @@ function generateGrids(
     numGuesses: number,
     wordLength: number,
     numGrids: number,
-    gridChecker: (gridNum: number, gridState: GridState) => void
+    gridChecker: (gridNum: number, gridState: GridState) => void,
+    stateArr: number[]
   ): JSX.Element[] {
 
     let grid: JSX.Element[] = [];
@@ -56,7 +58,8 @@ function generateGrids(
           guessArr={guessArr}
           maxGuesses={numGuesses}
           wordLength={wordLength}
-          gridNum={i} />
+          gridNum={i}
+          gridStates={stateArr} />
       )
     }
     return grid;
@@ -200,7 +203,6 @@ function Game() {
           </div>
         </tr>
       </table>
-      <Helmet>
       <div className="gridDiv">
         {generateGrids(
           answer,
@@ -209,10 +211,10 @@ function Game() {
           numGuesses,
           wordLength,
           numGrids,
-          GridChecker
+          GridChecker,
+          stateArr
         )}
       </div>
-      </Helmet>
       <div className="warning">
         <span style={{ color: (warningColor) }}>{warning}</span>
       </div>
