@@ -5,8 +5,9 @@ $background-dark: #181a1b;
     > table {
 
         border-spacing: 0px;
-
+        border: 1px white solid;  
         > tbody {
+          
             > tr {
                 // Table Row Alignment
                 display: flow-root;
@@ -14,8 +15,9 @@ $background-dark: #181a1b;
 
                     // Individual cell styling
                     background-color: $background-dark;
-                    width: 30px;
-                    height: 30px;
+                    width: 36px;
+                    height: 36px;
+                    padding: 0px;
 
                     border: 1px white solid;
                     /*
