@@ -179,7 +179,7 @@ function Game() {
                 setCurrentGuess(""); // Empties the current guess
                 setWarning(""); // Empties any warnings put
                 setWordLength(inputLength); // Sets the word length to the slider
-                setAnswer(getWords(inputLength, 1)); // Creates new word to solve
+                setAnswer(getWords(inputLength, numGrids)); // Creates new word to solve
                 setGuessArr([]); //  Resets the Guess Array
               }}
             /></td>

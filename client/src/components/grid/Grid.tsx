@@ -45,7 +45,7 @@ function letterDivs(wordRow: string, wordLength: number, checkedArr: checked[][]
     return word
       .map((letter, i) => {
         return (
-          <td key={i} >{letter.toUpperCase()}</td>
+          <td key={i} >{letter}</td>
         );
       });
   }
