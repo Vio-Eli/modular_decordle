@@ -2,14 +2,32 @@ $background-dark: #4E4847;
 
 
 .keyboardWrapper {
-    >div>button {
-        background-color: $background-dark;
-        padding: auto;
-        font-size: 30;
-        border: 1px grey solid;
-        color: rgb(226, 17, 156);
-        font-weight: bold;
-        align-items: center;
-        justify-content: center;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    >div{
+
+        >button {
+            font-family: 'Clear Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
+            background-color: $background-dark;
+            width: 32px;
+            height: 38px;
+            line-height: 32px;
+            font-size: 20px;
+            border: 1px grey solid;
+            color: rgb(226, 17, 156);
+            font-weight: bold;
+            align-items: center;
+            justify-content: center;
+        }
     }
+}
+
+#enter {
+    width: 80px;
+}
+
+#delete {
+    width: 40px;
 }

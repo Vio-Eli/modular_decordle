@@ -216,9 +216,7 @@ function Game() {
       <div className="warning">
         <span style={{ color: (warningColor) }}>{warning}</span>
       </div>
-      <div>
-        <Keyboard/>
-      </div>
+      <Keyboard/>
     </div>
   )
 }
