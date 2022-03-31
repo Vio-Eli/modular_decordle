@@ -58,3 +58,16 @@ $background-dark: #4E4847;
         }
     }
 }
+
+@media (max-width: global.$desktop-breakpoint) {
+    .keyboardWrapper {
+        >div {
+            >button {
+                width: 35px;
+                height: 40px;
+                line-height: 35px;
+                font-size: 20px;
+            }
+        }
+    }    
+}
