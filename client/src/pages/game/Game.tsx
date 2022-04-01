@@ -213,7 +213,7 @@ function Game() {
         <button onClick={ newGame }>new</button>
         <h3>
           <span style={ { color: "#e07680" } }> modular </span>
-          <span style={ { color: "#64da7c" } }> wordle </span>
+          <span style={ { color: "#64da7c" } }> decordle </span>
         </h3>
 
       </div>
