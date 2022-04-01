@@ -47,6 +47,7 @@ $keyboard-dark: #4E4847;
 
 #enter {
     width: 100px;
+    background-color: #027ffe;
 }
 
 #delete {
@@ -55,21 +56,22 @@ $keyboard-dark: #4E4847;
 
 @media (max-width: global.$small-phone-breakpoint) {
     #enter {
-        width: 80px;
+        width: 70px;
     }
 
     #delete {
-        width: 50px;
+        width: 35px;
     }
 
     .keyboardWrapper {
         >div {
             >button {
                 // Reduce button size, font, and line height to ensure proper alignment
-                width: 28px;
-                height: 29px;
+                width: 30px;
+                height: 32px;
                 line-height: 25px;
                 font-size: 16px;
+                padding: 0;
             }
         }
     }
