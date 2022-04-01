@@ -3,65 +3,83 @@ $background-dark: #181a1b;
 .gameWrapper {
 
     >#sliders {
+        // Affects the sliders to adjust grid amnt and word length
         margin: auto;
+
         >tbody>tr {
             >td {
-            align-items: center;
+                // Vertical alignment
+                align-items: center;
 
-            >span {
-                font-size: 16px;
-                margin-right: 5px;
-                float: left;
+                >span {
+                    font-size: 16px;
+                    margin-right: 5px;
+
+                    // Forces text left to create cleaner look
+                    float: left;
+                }
+
+                td>input {
+                    margin: 0px;
+                    position: relative;
+                    top: 2px;
+                }
             }
-            td>input {
-                margin: 0px;
-                position: relative;
-                top: 2px;
+        }
+
+    }
+
+    >.titleWrapper {
+
+        color: #F08080;
+        margin: 10px;
+
+        // Flex properties and alignment
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        >h3 {
+            font-size: 25px;
+            margin: 0px;
+        }
+
+        >button {
+            // New game button
+
+            // Colors
+            background-color: global.$background-dark;
+            color: white;
+
+            // Appearance
+            font-size: 15px;
+            border: 1px white solid;
+            height: 25px;
+            margin-right: 10px;
+
+            &:hover {
+                // Forces pointer mouse since it wouldn't do it
+                cursor: pointer;
             }
-    }
-}
-
-    }
-    > .titleWrapper {
-    color: #F08080;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin: 10px;
-
-    > h3 {
-        font-size: 25px;
-        margin: 0px;
-    }
-
-    > button {
-        background-color: $background-dark;
-        font-size: 15px;
-        color: white;
-        border: 1px white solid;
-        height: 25px;
-        margin-right: 10px;
-        &:hover {
-            cursor: pointer;
         }
     }
-}
 
-    > .gridDiv {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    >.gridDiv {
+        // Flex properties
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
     }
 
-    > .warning {
-        margin-top: 5px;    
-        > span {
+    >.warning {
+        margin-top: 5px;
+
+        >span {
             color: red;
             font-size: 16px;
-
         }
     }
 }

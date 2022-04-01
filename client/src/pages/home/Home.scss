@@ -10,57 +10,73 @@ $elsewhere: #daa520;
         margin-top: 20px;
     }
 
-    > table {
+    >table {
         justify-content: center;
+        margin: 20px auto;
+
+        // Removes border lines and squishes the cells together
         border: none;
         border-collapse: collapse;
-        margin: 20px auto;
+
+
         >tbody {
 
-        >tr {
-            >td{
-                >div {
-                    padding: 2px 2px
+            >tr {
+                >td {
+                    >div {
+                        padding: 2px 2px
+                    }
                 }
-            }
 
-            >.left, .right {
-                width: 50%;           
-            }
+                >.left,
+                .right {
+                    // Equalizes the space taken up
+                    width: 50%;
+                }
 
-            >.left {
-                text-align: right;
-            }
+                >.left {
+                    // Forces text to shove right
+                    text-align: right;
+                }
 
-            >.right {
-                text-align: left;
-            }
+                >.right {
+                    // Forces text to shove left
+                    text-align: left;
+                }
 
-            >.play, .github {
-                background-color: $elsewhere;
-            }
+                >.play,
+                .github {
+                    background-color: $elsewhere;
+                }
 
-            >.wordle, .cc {
-                background-color: $correct;
-            }
+                >.wordle,
+                .cc {
+                    background-color: $correct;
+                }
 
-            >.names, .view {
-                background-color: gray;
-            }
+                >.names,
+                .view {
+                    background-color: gray;
+                }
 
             }
         }
     }
 }
 
-  Link, a {
-      text-decoration: none;
-      color: white;
-      >div {
+Link,
+a {
+    // Remove the blue and underlined for links
+    text-decoration: none;
+    color: white;
+
+    >div {
         padding: 2px 2px
     }
-  }
+}
 
-  #playBtn:hover, #github:hover {
-      cursor: pointer;
-  }
+#playBtn:hover,
+#github:hover {
+    // Forces pointer mouse
+    cursor: pointer;
+}
