@@ -179,8 +179,10 @@ function Game() {
       setInputDisabled(false);
     }
 
-    // Check Callback GridState --> See if player won or not
-    if (stateArr.every(x => x === 1)) { // If every grid has the Won state (1), player has won
+    // Check Callback GridState --> See if player won or not\
+    // If every grid has the Won state (1), player has won
+    // Check if State Array is the correct length (the number of grids)
+    if (stateArr.every(x => x === 1) && stateArr.length === numGrids) {
       setGameState(gameState => GameState.Won);
       setWarning("You've Won!");
       setWarningColor("green");

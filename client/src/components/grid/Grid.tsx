@@ -84,8 +84,8 @@ export default function Grid(props: GridProps) {
     }
   });
 
-  // If we hit the max number of guesses, let grid state to lost
-  if (props.guessArr.length === props.maxGuesses) {
+  // If we hit the max number of guesses, set grid state to lost
+  if (props.guessArr.length === props.maxGuesses && arrState === 0) {
     props.gridChecker(props.gridNum, GridState.Lost); // Set the Global Grid State to lost
   }
 
