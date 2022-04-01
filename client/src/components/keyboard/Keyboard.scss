@@ -38,6 +38,10 @@ $keyboard-dark: #4E4847;
             border-radius: 7px;
             margin: 2px;
 
+            &:hover {
+                // On hover, change cursor to pointer
+                cursor: pointer;
+            }
         }
     }
 }
