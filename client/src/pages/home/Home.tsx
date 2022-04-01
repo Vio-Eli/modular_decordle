@@ -23,7 +23,7 @@ export default function Home() {
                 <span id="mod" style={ { color: "#e07680" } }>MOD 
                 <span id="ular"></span>
                 </span> 
-                <span id="wordle" style={ { color: "#64da7c" } }>WORDLE</span>
+                <span id="wordle" style={ { color: "#64da7c" } }>DECORDLE</span>
             </div>
             <table>
                 <tbody>
