@@ -71,6 +71,8 @@ $keyboard-dark: #4E4847;
                 height: 32px;
                 line-height: 25px;
                 font-size: 16px;
+                
+                // Remove padding because of Safari
                 padding: 0;
             }
         }
