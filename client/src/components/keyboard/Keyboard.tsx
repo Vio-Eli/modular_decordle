@@ -21,8 +21,11 @@ function Keyboard(props: KeyboardProps) {
             } else if (key === '⌫') {
                 id = 'delete'
             }
-            return(
-                <button key={i} id={id} onClick={() => props.onkey(key)}>{key}</button>
+            return (
+                <button key={ i } id={ id } onClick={ (e) => {
+                    props.onkey(key);
+                    e.currentTarget.blur();
+                } }>{ key }</button>
             );
         })
     }
@@ -30,9 +33,9 @@ function Keyboard(props: KeyboardProps) {
 
     return (
         <div className="keyboardWrapper">
-            <div className="buttonDiv">{keyMap(keyboard[0])}</div>
-            <div className="buttonDiv">{keyMap(keyboard[1])}</div>
-            <div className="buttonDiv">{keyMap(keyboard[2])}</div>
+            <div className="buttonDiv">{ keyMap(keyboard[0]) }</div>
+            <div className="buttonDiv">{ keyMap(keyboard[1]) }</div>
+            <div className="buttonDiv">{ keyMap(keyboard[2]) }</div>
         </div>
     )
 }
