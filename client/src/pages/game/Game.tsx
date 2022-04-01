@@ -184,7 +184,11 @@ function Game() {
       setGameState(gameState => GameState.Won);
       setWarning("You've Won!");
       setWarningColor("green");
-    };
+    } else if (stateArr.some(x => x === 2)) { // If one of the grids reports lost, then the player has lost
+      setGameState(gameState => GameState.Lost); 
+      setWarning(`You've lost. Correct word(s) were ${answer.join(', ')}`); // Nicely printing out the array of answers
+      setWarningColor("red");
+    }
 
     // When key is pressed, call OnKey
     const onKeyDown = (e: KeyboardEvent) => {
