@@ -13,17 +13,20 @@ export default function check(guess: string, ans: string): Array<checked> {
     guessArr.forEach((letter, i) => {
         if (letter === ans[i]) {
             ans = ans.slice(0, i) + "*" + ans.slice(i+1);
+            console.log(`Green ${letter}`);
             checkArr[i] = { letter, color: 'green' };
         }
     })
 
     guessArr.forEach((letter, i) => {
         j = ans.indexOf(letter);
-        if (j !== -1 && j !== i) {
-            ans = ans.slice(0, j) + "*" + ans.slice(j+1);
-            checkArr[i] = { letter, color: 'goldenrod' };
-        } else if (checkArr[i] === undefined) {
-            checkArr[i] = { letter, color: 'gray' };
+        if (checkArr[i] === undefined) {
+            if (j !== -1 && j !== i) {
+                ans = ans.slice(0, j) + "*" + ans.slice(j+1);
+                checkArr[i] = { letter, color: 'goldenrod' };
+            } else {
+                checkArr[i] = { letter, color: 'gray' };
+            }
         }
     })
 
