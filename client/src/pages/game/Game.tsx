@@ -14,13 +14,13 @@ import dict from '../../utils/dict.json';
 import pick from '../../utils/pick';
 import './Game.scss';
 
-enum GameState {
+enum GameState { // Overall Game State
   Playing,
   Won,
   Lost
 }
 
-const newGame = () => {
+const newGame = () => { // To Create a new game
   window.location.reload();
 }
 
@@ -126,7 +126,7 @@ function Game() {
     }, [],
   );
 
-  //create log on key press
+  // Create log on key press
   const onKey = (key: string) => {
     key = key.toLowerCase();
 
