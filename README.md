@@ -48,3 +48,10 @@ CLI Commands:
 - [Link to Github](https://github.com/jsncorn)
 - [Link to LinkedIn](https://www.linkedin.com/in/jason-khoa-ngo/)
 
+## License
+
+This work is licensed under GPL 3.0 with the Common Clause License Applied to it.
+Simply Put, Please Don't Sell This Software.
+
+`SPDX-License-Identifier: GPL-3.0 AND Commons-Clause-License`
+
