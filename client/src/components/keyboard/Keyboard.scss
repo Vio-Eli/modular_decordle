@@ -12,10 +12,10 @@ $background-dark: #4E4847;
         >button {
             font-family: 'Clear Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
             background-color: $background-dark;
-            width: 32px;
-            height: 38px;
-            line-height: 32px;
-            font-size: 20px;
+            width: 40px;
+            height: 45px;
+            line-height: 38px;
+            font-size: 25px;
             border: 1px grey solid;
             color: white;
             font-weight: bold;
@@ -26,11 +26,11 @@ $background-dark: #4E4847;
 }
 
 #enter {
-    width: 80px;
+    width: 100px;
 }
 
 #delete {
-    width: 40px;
+    width: 50px;
 }
 
 @media (max-width: global.$iphone-breakpoint) {
@@ -69,5 +69,6 @@ $background-dark: #4E4847;
                 font-size: 20px;
             }
         }
-    }    
+    }  
+      
 }
