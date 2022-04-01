@@ -1,17 +1,24 @@
 @use '../../global';
 
 .gridWrapper {
-    padding: 5px;
-    > table {
 
+    // Gives space between each grid
+    padding: 5px;
+
+    >table {
+
+        // Remove border since each cell will have a border
         border-spacing: 0px;
-        border: 1px white solid;  
-        > tbody {
-          
-            > tr {
+        // Added to have a 2px border all around
+        border: 1px white solid;
+
+        >tbody {
+
+            >tr {
                 // Table Row Alignment
                 display: flow-root;
-                > td {
+
+                >td {
 
                     // Individual cell styling
                     background-color: global.$background-dark;
@@ -19,6 +26,7 @@
                     height: 36px;
                     padding: 0px;
 
+                    // Cell Border
                     border: 1px white solid;
                     color: white;
 
@@ -30,7 +38,7 @@
                     // Font Alignment
                     align-items: center;
                     justify-content: center;
-                    
+
                 }
             }
         }
@@ -39,9 +47,10 @@
 
 @media (max-width: global.$small-phone-breakpoint) {
     .gridWrapper>table>tbody>tr>td {
+
+        // Cell Sizing
         width: 31px;
         height: 31px;
-
         font-size: 26px;
     }
 }

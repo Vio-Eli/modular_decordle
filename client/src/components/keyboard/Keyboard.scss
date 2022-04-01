@@ -3,24 +3,37 @@ $keyboard-dark: #4E4847;
 
 
 .keyboardWrapper {
+    // Force div to take up the page
     width: 100%;
+
+    // Item alignment
     align-items: center;
     justify-content: center;
+
+    // Space between grids, game msg, and board
     margin-top: 10px;
+
     >div {
 
         >button {
-            font-family: 'Clear Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
-            background-color: $keyboard-dark;
-            width: 40px;
-            height: 45px;
-            line-height: 38px;
-            font-size: 25px;
-            border: 1px grey solid;
-            color: white;
-            font-weight: bold;
+
+            // Button alignment
             align-items: center;
             justify-content: center;
+
+            // Button text
+            font-family: 'Clear Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
+            font-size: 25px;
+            font-weight: bold;
+            line-height: 38px;
+
+            // Button colors
+            background-color: $keyboard-dark;
+            border: 1px grey solid;
+            color: white;
+            width: 40px;
+            height: 45px;
+
         }
     }
 }
@@ -34,19 +47,20 @@ $keyboard-dark: #4E4847;
 }
 
 @media (max-width: global.$small-phone-breakpoint) {
-   #enter {
-    width: 80px;
-}
+    #enter {
+        width: 80px;
+    }
 
-#delete {
-    width: 50px;
-} 
+    #delete {
+        width: 50px;
+    }
 }
 
 @media (max-width: global.$big-phone-breakpoint) {
     .keyboardWrapper {
         >div {
             >button {
+                // Reduce button size, font, and line height to ensure proper alignment
                 width: 25px;
                 height: 30px;
                 line-height: 25px;
@@ -60,6 +74,7 @@ $keyboard-dark: #4E4847;
     .keyboardWrapper {
         >div {
             >button {
+                // Reduce button size, font, and line height to ensure proper alignment
                 width: 30px;
                 height: 35px;
                 line-height: 28px;
@@ -73,12 +88,13 @@ $keyboard-dark: #4E4847;
     .keyboardWrapper {
         >div {
             >button {
+                // Reduce button size, font, and line height to ensure proper alignment
                 width: 35px;
                 height: 40px;
                 line-height: 35px;
                 font-size: 20px;
             }
         }
-    }  
-      
+    }
+
 }
