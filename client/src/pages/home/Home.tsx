@@ -42,7 +42,7 @@ export default function Home() {
                         <td className='right wordle'>
                             <Link to='/game'>
                                 <div>
-                                    mod wordle
+                                    decordle
                                 </div>
                             </Link>
                         </td>
