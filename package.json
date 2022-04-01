@@ -1,5 +1,5 @@
 {
-  "name": "modular_octowordle",
+  "name": "modular_decordle",
   "version": "1.0.0",
   "description": "Wordle but Better",
   "main": "index.js",
