@@ -4,6 +4,7 @@ $elsewhere: #daa520;
 .homeWrapper {
     width: 100vw;
     height: 100vh;
+    font-size: calc(10px + 2vmin);
 
     .headerDiv {
         text-align: center;
@@ -18,7 +19,7 @@ $elsewhere: #daa520;
         border: none;
         border-collapse: collapse;
 
-
+        
         >tbody {
 
             >tr {
