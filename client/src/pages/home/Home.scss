@@ -81,3 +81,9 @@ a {
     // Forces pointer mouse
     cursor: pointer;
 }
+
+#mod {
+    >::first-letter {
+        color: white;
+    }
+}

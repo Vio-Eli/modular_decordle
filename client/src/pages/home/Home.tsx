@@ -1,18 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Home.scss';
 import { Link } from 'react-router-dom';
+import { init } from 'ityped';
 
 const githubHandler = () => {
     window.open("https://github.com/Vio-Eli/modular_octowordle")
 }
 
-
 export default function Home() {
+
+    useEffect(() => {
+        const ularSpan = document.querySelector('#ular');
+        init(ularSpan!, {
+            showCursor: false,
+            strings: ["ULAR"]
+        });
+    }, []);
+
     return (
         <div className='homeWrapper'>
             <div className='headerDiv'>
-                <span style={ { color: "#e07680" } }>MOD </span> 
-                <span style={ { color: "#64da7c" } }>WORDLE</span>
+                <span id="mod" style={ { color: "#e07680" } }>MOD 
+                <span id="ular"></span>
+                </span> 
+                <span id="wordle" style={ { color: "#64da7c" } }>WORDLE</span>
             </div>
             <table>
                 <tbody>
