@@ -126,7 +126,7 @@ function Game() {
     }, [],
   );
 
-  //create log on key press
+  // Create log on key press
   const onKey = (key: string) => {
     key = key.toLowerCase();
 
