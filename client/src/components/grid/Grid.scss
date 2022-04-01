@@ -39,7 +39,9 @@
 
 @media (max-width: global.$small-phone-breakpoint) {
     .gridWrapper>table>tbody>tr>td {
-        width: 30px;
-        height: 30px;
+        width: 31px;
+        height: 31px;
+
+        font-size: 26px;
     }
 }
