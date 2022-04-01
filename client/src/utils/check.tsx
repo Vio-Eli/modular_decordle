@@ -23,7 +23,6 @@ export default function check(guess: string, ans: string): Array<checked> {
             ans = ans.slice(0, j) + "*" + ans.slice(j+1);
             checkArr[i] = { letter, color: 'goldenrod' };
         } else if (checkArr[i] === undefined) {
-            console.log(checkArr)
             checkArr[i] = { letter, color: 'gray' };
         }
     })

@@ -2,14 +2,14 @@ import React, { Ref, useState, useRef, useEffect, useCallback } from 'react';
 import Grid, { GridState } from '../../components/grid/Grid';
 import Keyboard from '../../components/keyboard/Keyboard';
 import dict from '../../utils/dict.json';
-import dictlen4 from '../../utils/dictlen4.json';
-import dictlen5 from '../../utils/dictlen5.json';
-import dictlen6 from '../../utils/dictlen6.json';
-import dictlen7 from '../../utils/dictlen7.json';
-import dictlen8 from '../../utils/dictlen8.json';
-import dictlen9 from '../../utils/dictlen9.json';
-import dictlen10 from '../../utils/dictlen10.json';
-import dictlen11 from '../../utils/dictlen11.json';
+//import dictlen4 from '../../utils/dictlen4.json';
+//import dictlen5 from '../../utils/dictlen5.json';
+//import dictlen6 from '../../utils/dictlen6.json';
+//import dictlen7 from '../../utils/dictlen7.json';
+//import dictlen8 from '../../utils/dictlen8.json';
+//import dictlen9 from '../../utils/dictlen9.json';
+//import dictlen10 from '../../utils/dictlen10.json';
+//import dictlen11 from '../../utils/dictlen11.json';
 
 import pick from '../../utils/pick';
 import './Game.scss';
@@ -24,7 +24,7 @@ const newGame = () => {
   window.location.reload();
 }
 
-function getDict(wordLength: number) {
+/*function getDict(wordLength: number) {
   if (wordLength === 4) {
     return dictlen4;
   } else if (wordLength === 5) {
@@ -44,11 +44,11 @@ function getDict(wordLength: number) {
   } else {
     return dict;
   }
-}
+}*/
 
 function getWords(wordLength: number, numWords: number): string[] {
 
-  let eligible = getDict(wordLength).filter((word) => word.length === wordLength);
+  let eligible = dict.filter((word) => word.length === wordLength);
   let wordArr: string[] = [];
 
   for (let i = 0; i < numWords; i++) {
@@ -145,7 +145,7 @@ function Game() {
         setWarningColor("yellow");
         return;
       }
-      if (!getDict(wordLength).includes(currentGuess)) {
+      if (!dict.includes(currentGuess)) {
         setWarning("Invalid Word");
         setWarningColor("yellow");
         return;
