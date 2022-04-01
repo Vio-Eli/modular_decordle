@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/modular_octowordle/static/css/main.3d869fbf.css",
-    "main.js": "/modular_octowordle/static/js/main.80611b42.js",
+    "main.css": "/modular_octowordle/static/css/main.751b7d29.css",
+    "main.js": "/modular_octowordle/static/js/main.d56902ec.js",
     "index.html": "/modular_octowordle/index.html",
-    "main.3d869fbf.css.map": "/modular_octowordle/static/css/main.3d869fbf.css.map",
-    "main.80611b42.js.map": "/modular_octowordle/static/js/main.80611b42.js.map"
+    "main.751b7d29.css.map": "/modular_octowordle/static/css/main.751b7d29.css.map",
+    "main.d56902ec.js.map": "/modular_octowordle/static/js/main.d56902ec.js.map"
   },
   "entrypoints": [
-    "static/css/main.3d869fbf.css",
-    "static/js/main.80611b42.js"
+    "static/css/main.751b7d29.css",
+    "static/js/main.d56902ec.js"
   ]
 }
