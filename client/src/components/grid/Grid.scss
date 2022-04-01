@@ -1,4 +1,4 @@
-$background-dark: #181a1b;
+@use '../../global';
 
 .gridWrapper {
     padding: 5px;
@@ -14,7 +14,7 @@ $background-dark: #181a1b;
                 > td {
 
                     // Individual cell styling
-                    background-color: $background-dark;
+                    background-color: global.$background-dark;
                     width: 36px;
                     height: 36px;
                     padding: 0px;
@@ -34,5 +34,12 @@ $background-dark: #181a1b;
                 }
             }
         }
+    }
+}
+
+@media (max-width: global.$small-phone-breakpoint) {
+    .gridWrapper>table>tbody>tr>td {
+        width: 30px;
+        height: 30px;
     }
 }

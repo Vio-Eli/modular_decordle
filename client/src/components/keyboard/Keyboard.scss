@@ -1,20 +1,21 @@
-$background-dark: #4E4847;
+@use '../../global';
+$keyboard-dark: #4E4847;
 
 
 .keyboardWrapper {
     width: 100%;
     align-items: center;
     justify-content: center;
-
-    >div{
+    margin-top: 10px;
+    >div {
 
         >button {
             font-family: 'Clear Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
-            background-color: $background-dark;
-            width: 32px;
-            height: 38px;
-            line-height: 32px;
-            font-size: 20px;
+            background-color: $keyboard-dark;
+            width: 40px;
+            height: 45px;
+            line-height: 38px;
+            font-size: 25px;
             border: 1px grey solid;
             color: white;
             font-weight: bold;
@@ -25,9 +26,59 @@ $background-dark: #4E4847;
 }
 
 #enter {
+    width: 100px;
+}
+
+#delete {
+    width: 50px;
+}
+
+@media (max-width: global.$small-phone-breakpoint) {
+   #enter {
     width: 80px;
 }
 
 #delete {
-    width: 40px;
+    width: 50px;
+} 
+}
+
+@media (max-width: global.$big-phone-breakpoint) {
+    .keyboardWrapper {
+        >div {
+            >button {
+                width: 25px;
+                height: 30px;
+                line-height: 25px;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media (max-width: global.$tablet-breakpoint) {
+    .keyboardWrapper {
+        >div {
+            >button {
+                width: 30px;
+                height: 35px;
+                line-height: 28px;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media (max-width: global.$desktop-breakpoint) {
+    .keyboardWrapper {
+        >div {
+            >button {
+                width: 35px;
+                height: 40px;
+                line-height: 35px;
+                font-size: 20px;
+            }
+        }
+    }  
+      
 }
