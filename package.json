@@ -16,9 +16,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Vio-Eli/modular_octowordle/issues"
+    "url": "https://github.com/Vio-Eli/modular_decordle/issues"
   },
-  "homepage": "https://github.com/Vio-Eli/modular_octowordle#readme",
+  "homepage": "https://github.com/Vio-Eli/modular_decordle#readme",
   "dependencies": {
     "typescript": "^4.6.3"
   },
