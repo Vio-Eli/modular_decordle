@@ -46,40 +46,42 @@ const newGame = () => {
   }
 }*/
 
+// Get an array of words for the answers
 function getWords(wordLength: number, numWords: number): string[] {
 
+  // Filtering all the eligible words
   let eligible = dict.filter((word) => word.length === wordLength);
-  let wordArr: string[] = [];
+  let wordArr: string[] = []; // Create the (soon to be) answer array
 
   for (let i = 0; i < numWords; i++) {
     let word: string = pick(eligible);
     // Ensures no duplication of words (extra precaution)
-    if (!wordArr.includes(word)) {
-      wordArr.push(word);
+    while (wordArr.includes(word)) { 
+      word = pick(eligible); // If word is already being used, pick another one
     }
+    wordArr.push(word); // Push the word to the answer array
   }
 
+  eligible = []; // Unload dictionary
 
-  eligible = [];
-
-  //console.log(wordArr);
-  return wordArr;
+  return wordArr; // Return our answer array
 }
 
+// Recursively Generate Grids
 function generateGrids(
-  answer: string[],
-  currentGuess: string,
-  guessArr: string[],
-  numGuesses: number,
-  wordLength: number,
-  numGrids: number,
-  gridChecker: (gridNum: number, gridState: GridState) => void,
-  stateArr: number[]
+  answer: string[], // Array of answers
+  currentGuess: string, // Current guess
+  guessArr: string[], // Array of past guesses
+  numGuesses: number, // Max number of guesses
+  wordLength: number, // Length of word
+  numGrids: number, // Number of grids to make
+  gridChecker: (gridNum: number, gridState: GridState) => void, // Callback to set the state of each grid independently
+  stateArr: number[] // Array of grid states
 ): JSX.Element[] {
 
-  let grid: JSX.Element[] = [];
+  let grid: JSX.Element[] = []; // Creating our grid array
 
-  for (let i: number = 0; i < numGrids; i++) {
+  for (let i: number = 0; i < numGrids; i++) { // Recursively generating the grids
     grid.push(
       <Grid
         key={ i }
@@ -96,25 +98,26 @@ function generateGrids(
   return grid;
 }
 
-let stateArr: number[] = [0];
+let stateArr: number[] = [0]; // Array of grid states
 
+// Game Element
 function Game() {
 
-  const [wordLength, setWordLength] = useState<number>(5);
-  const [numGrids, setNumGrids] = useState<number>(1);
+  const [wordLength, setWordLength] = useState<number>(5); // Length of words. Defaults to 5
+  const [numGrids, setNumGrids] = useState<number>(1); // Number of grids. Defaults to 1
 
-  const numGuesses: number = numGrids + 5;
+  const numGuesses: number = numGrids + 5; // Max number of guesses
 
-  const [warning, setWarning] = useState('');
-  const [warningColor, setWarningColor] = useState<string>('red');
-  const [guessArr, setGuessArr] = useState<string[]>([]);
-  const [currentGuess, setCurrentGuess] = useState<string>("");
-  const [answer, setAnswer] = useState<string[]>(getWords(wordLength, 1));
+  const [warning, setWarning] = useState(''); // Help Message under Grids (ex: Word too short!)
+  const [warningColor, setWarningColor] = useState<string>('red'); // Color of Message ^
 
-  const [gameState, setGameState] = useState<GameState>(GameState.Playing);
-  const [gridArr, setGridArr] = useState<JSX.Element[]>()
+  const [guessArr, setGuessArr] = useState<string[]>([]); // Array of past guesses
+  const [currentGuess, setCurrentGuess] = useState<string>(""); // Current Guess
+  const [answer, setAnswer] = useState<string[]>(getWords(wordLength, 1)); // Array of Answer(s) (1 per grid)
+  const [gridArr, setGridArr] = useState<JSX.Element[]>() // Array of Grids
 
-  const [inputDisabled, setInputDisabled] = useState<boolean>(false);
+  const [gameState, setGameState] = useState<GameState>(GameState.Playing); // Main game State
+  const [inputDisabled, setInputDisabled] = useState<boolean>(false); // Whether Slider Input is Disabled
 
   // Callback for each grid to set if won or lost
   let GridChecker = useCallback(
@@ -127,37 +130,43 @@ function Game() {
   const onKey = (key: string) => {
     key = key.toLowerCase();
 
+    // If key is a letter, add it to the current guess
     if (/^[a-z]$/i.test(key)) {
       setCurrentGuess((currentGuess) =>
         (currentGuess + key.toLocaleLowerCase()).slice(0, wordLength)
       );
 
     } else if (key === "backspace" || key === "⌫") {
-      setCurrentGuess((currentGuess) => currentGuess.slice(0, -1));
-    } else if (key === "enter") {
+      setCurrentGuess((currentGuess) => currentGuess.slice(0, -1)); // Delete last letter in current guess
+
+    } else if (key === "enter") { // Submitting the current guess for check
+      // If guess is empty
       if (currentGuess.length === 0) {
         setWarning("Please enter a word");
         setWarningColor("yellow");
         return;
       }
+      // If guess is too short
       if (currentGuess.length !== wordLength) {
         setWarning("Too Short!");
         setWarningColor("yellow");
         return;
       }
+      // If guess isnt a word
       if (!dict.includes(currentGuess)) {
         setWarning("Invalid Word");
         setWarningColor("yellow");
         return;
       }
+      // If guess has already been used
       if (guessArr.includes(currentGuess)) {
         setWarning("Can't use the same word twice!");
         setWarningColor("yellow");
         return;
       }
 
-      setGuessArr((guessArr) => guessArr.concat([currentGuess]));
-      setCurrentGuess((currentGuess) => "");
+      setGuessArr((guessArr) => guessArr.concat([currentGuess])); // Push the guess to past guesses
+      setCurrentGuess((currentGuess) => ""); // Set current guess to empty string
     }
   };
 
@@ -171,16 +180,13 @@ function Game() {
     }
 
     // Check Callback GridState --> See if player won or not
-    if (stateArr.every(x => x === 1)) {
+    if (stateArr.every(x => x === 1)) { // If every grid has the Won state (1), player has won
       setGameState(gameState => GameState.Won);
       setWarning("You've Won!");
       setWarningColor("green");
-    } else if (stateArr.some(x => x === 2)) {
-      setGameState(gameState => GameState.Lost);
-      setWarning(`You've lost. The word was ${answer[0]}`);
-      setWarningColor("red");
     };
 
+    // When key is pressed, call OnKey
     const onKeyDown = (e: KeyboardEvent) => {
       if (!e.ctrlKey && !e.metaKey) {
         onKey(e.key)
@@ -194,7 +200,7 @@ function Game() {
       document.removeEventListener("keydown", onKeyDown);
     };
 
-  }, [currentGuess, guessArr, stateArr, inputDisabled]);
+  }, [currentGuess, guessArr, stateArr, inputDisabled]); // UseEffects depends on these
 
 
   return (
@@ -244,7 +250,7 @@ function Game() {
         </tbody>
       </table>
       <div className="gridDiv">
-        { generateGrids(
+        { generateGrids( // Our Grids. See function for more comments
           answer,
           currentGuess,
           guessArr,
