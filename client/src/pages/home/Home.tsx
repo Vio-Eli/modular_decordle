@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { init } from 'ityped';
 
 const githubHandler = () => {
-    window.open("https://github.com/Vio-Eli/modular_octowordle")
+    window.open("https://github.com/Vio-Eli/modular_decordle")
 }
 
 export default function Home() {
