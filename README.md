@@ -48,3 +48,5 @@ CLI Commands:
 - [Link to Github](https://github.com/jsncorn)
 - [Link to LinkedIn](https://www.linkedin.com/in/jason-khoa-ngo/)
 
+## Copyright
+The owners and authors of this software claim [The Commons Clause License](https://commonsclause.com/) in addition to the GNU [General Public License v3.0](https://www.gnu.org/licenses/gpl-3.0.en.html).
