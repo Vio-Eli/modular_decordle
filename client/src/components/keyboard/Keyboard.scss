@@ -33,7 +33,17 @@ $keyboard-dark: #4E4847;
     width: 50px;
 }
 
-@media (max-width: global.$iphone-breakpoint) {
+@media (max-width: global.$small-phone-breakpoint) {
+   #enter {
+    width: 80px;
+}
+
+#delete {
+    width: 50px;
+} 
+}
+
+@media (max-width: global.$big-phone-breakpoint) {
     .keyboardWrapper {
         >div {
             >button {
