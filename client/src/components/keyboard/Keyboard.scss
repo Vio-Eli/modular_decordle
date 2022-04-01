@@ -31,8 +31,12 @@ $keyboard-dark: #4E4847;
             background-color: $keyboard-dark;
             border: 1px grey solid;
             color: white;
+
+            // Button appearance
             width: 40px;
             height: 45px;
+            border-radius: 7px;
+            margin: 2px;
 
         }
     }
