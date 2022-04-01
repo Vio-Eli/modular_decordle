@@ -51,6 +51,7 @@ CLI Commands:
 ## License
 
 This work is licensed under GPL 3.0 with the Common Clause License Applied to it.
+
 Simply Put, Please Don't Sell This Software.
 
 `SPDX-License-Identifier: GPL-3.0 AND Commons-Clause-License`
