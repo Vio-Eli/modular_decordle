@@ -1,5 +1,5 @@
 @use '../../global';
-$background-dark: #4E4847;
+$keyboard-dark: #4E4847;
 
 
 .keyboardWrapper {
@@ -11,7 +11,7 @@ $background-dark: #4E4847;
 
         >button {
             font-family: 'Clear Sans', 'Helvetica Neue', 'Arial', 'sans-serif';
-            background-color: $background-dark;
+            background-color: $keyboard-dark;
             width: 40px;
             height: 45px;
             line-height: 38px;

@@ -1,4 +1,4 @@
-$background-dark: #181a1b;
+@use '../../global';
 
 .gridWrapper {
     padding: 5px;
@@ -14,7 +14,7 @@ $background-dark: #181a1b;
                 > td {
 
                     // Individual cell styling
-                    background-color: $background-dark;
+                    background-color: global.$background-dark;
                     width: 36px;
                     height: 36px;
                     padding: 0px;
