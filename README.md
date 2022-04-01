@@ -3,13 +3,13 @@
 Modular Decordle is an unlimited Wordle with a few twists. All Dictionary words are allowed, but inappropriate or curse words were filtered out. You can select a letter length ranging from 4 to 11. And best of all, you can select how many words you wish to solve at once ranging from 1 grid, up to 10 of them.
 
 <p align="center">
-  <img src="https://img.shields.io/github/languages/top/Vio-Eli/modular_octowordle?style=flat&logo=appveyor"/> 
-  <img src="https://img.shields.io/github/last-commit/Vio-Eli/modular_octowordle?style=flat&logo=appveyor"/>
+  <img src="https://img.shields.io/github/languages/top/Vio-Eli/modular_decordle?style=flat&logo=appveyor"/> 
+  <img src="https://img.shields.io/github/last-commit/Vio-Eli/modular_decordle?style=flat&logo=appveyor"/>
 </p>
 
 ## Deployment
 
-Deployed Link: [Github Pages](https://vio-eli.github.io/modular_octowordle/)
+Deployed Link: [Github Pages](https://vio-eli.github.io/modular_decordle/)
 ## Languages and Packages Used
 - [Node.js](https://nodejs.org/en/)
 - [TypeScript](https://www.npmjs.com/package/typescript)
