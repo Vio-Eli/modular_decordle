@@ -11,7 +11,8 @@ export default function Home() {
     return (
         <div className='homeWrapper'>
             <div className='headerDiv'>
-                MOD WORDLE
+                <span style={ { color: "#e07680" } }>MOD </span> 
+                <span style={ { color: "#64da7c" } }>WORDLE</span>
             </div>
             <table>
                 <tbody>
