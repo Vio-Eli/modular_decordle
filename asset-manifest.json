@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/modular_decordle/static/css/main.b35b7ea8.css",
-    "main.js": "/modular_decordle/static/js/main.8da84c4c.js",
+    "main.js": "/modular_decordle/static/js/main.14f89538.js",
     "index.html": "/modular_decordle/index.html",
     "main.b35b7ea8.css.map": "/modular_decordle/static/css/main.b35b7ea8.css.map",
-    "main.8da84c4c.js.map": "/modular_decordle/static/js/main.8da84c4c.js.map"
+    "main.14f89538.js.map": "/modular_decordle/static/js/main.14f89538.js.map"
   },
   "entrypoints": [
     "static/css/main.b35b7ea8.css",
-    "static/js/main.8da84c4c.js"
+    "static/js/main.14f89538.js"
   ]
 }
