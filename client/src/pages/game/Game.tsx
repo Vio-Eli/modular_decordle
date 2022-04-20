@@ -141,15 +141,17 @@ function Game() {
   };
 
   useEffect(() => {
-
     // Disabled slider bars if user has typed or entered a word
     if(currentGuess.length > 0 || guessArr.length > 0) {
       setInputDisabled(true);
     } else if (currentGuess.length === 0) {
       setInputDisabled(false);
     }
+  }, [currentGuess])
 
-    // Check Callback GridState --> See if player won or not\
+  useEffect(() => {
+
+    // Check Callback GridState --> See if player won or not
     // If every grid has the Won state (1), player has won
     // Check if State Array is the correct length (the number of grids)
     if (stateArr.every(x => x === 1) && stateArr.length === numGrids) {
@@ -161,7 +163,9 @@ function Game() {
       setWarning(`You've lost. Correct word(s) were ${answer.join(', ')}`); // Nicely printing out the array of answers
       setWarningColor("red");
     }
+  }, [guessArr, stateArr]); // UseEffects depends on these
 
+  useEffect(() => {
     // When key is pressed, call OnKey
     const onKeyDown = (e: KeyboardEvent) => {
       if (!e.ctrlKey && !e.metaKey) {
@@ -175,9 +179,7 @@ function Game() {
     return () => {
       document.removeEventListener("keydown", onKeyDown);
     };
-
-  }, [currentGuess, guessArr, stateArr, inputDisabled]); // UseEffects depends on these
-
+  })
 
   return (
     <div className="gameWrapper">
